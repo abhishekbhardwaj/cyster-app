@@ -5,7 +5,7 @@ export default defineConfig({
     globals: true,
     passWithNoTests: true,
     include: ['**/*.{test,spec}.{ts,tsx}'],
-    exclude: ['node_modules', 'dist', '.next', '.output', '.wxt'],
+    exclude: ['node_modules', 'dist', '.next'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],

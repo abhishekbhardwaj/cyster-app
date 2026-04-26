@@ -1,4 +1,0 @@
-{
-  "extends": ["./.wxt/tsconfig.json", "@repo/typescript/wxt.json"],
-  "exclude": [".output", "*.config.ts", "*.config.js"]
-}

@@ -9,7 +9,6 @@
   },
   "exports": {
     "./web": "./src/web.ts",
-    "./browser-extension": "./src/browser-extension.ts",
     "./backend": "./src/backend.ts"
   },
   "dependencies": {
@@ -18,7 +17,6 @@
   },
   "devDependencies": {
     "@repo/eslint": "workspace:*",
-    "@repo/typescript": "workspace:*",
-    "vite": "^8.0.10"
+    "@repo/typescript": "workspace:*"
   }
 }

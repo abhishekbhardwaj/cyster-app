@@ -1,14 +1,13 @@
 # Turbo Full-Stack Monorepo
 
-A production-ready boilerplate template for full-stack monorepo projects. Built with Turborepo, Bun, TypeScript, Next.js, and WXT — with shared tooling for linting, formatting, testing, and type-safe environment variables pre-configured.
+A production-ready boilerplate template for full-stack monorepo projects. Built with Turborepo, Bun, TypeScript, and Next.js — with shared tooling for linting, formatting, testing, and type-safe environment variables pre-configured.
 
 ## Project Structure
 
 ```
 turbo-full-stack-monorepo/
 ├── apps/
-│   ├── web/                     # Next.js 16 web app (React 19)
-│   └── browser-extension/       # WXT browser extension (Chrome MV3)
+│   └── web/                     # Next.js 16 web app (React 19)
 ├── packages/
 │   ├── ui/                      # Shared React components (@repo/ui)
 │   ├── env/                     # Type-safe env validation (@repo/env)
@@ -21,7 +20,6 @@ turbo-full-stack-monorepo/
 └── testing/
     └── e2e/                     # Playwright E2E tests (@repo/e2e)
         ├── web/                 # Web app E2E tests
-        ├── browser-extension/   # Extension E2E tests
         └── shared/              # Shared fixtures & page objects
 ```
 
@@ -38,30 +36,27 @@ bun run dev
 
 - **Unit tests** — [Vitest](https://vitest.dev/), colocated with source code in each app/package
 - **E2E tests** — [Playwright](https://playwright.dev/), centralized in `testing/e2e/`
-- **Shared config** — `tooling/vitest/` provides reusable presets (`@repo/vitest/base`, `@repo/vitest/react`, `@repo/vitest/wxt`)
+- **Shared config** — `tooling/vitest/` provides reusable presets (`@repo/vitest/base`, `@repo/vitest/react`)
 - **Shared utilities** — `packages/test-utils/` for factories, fixtures, custom matchers (`@repo/test-utils`)
 
 ### Running Tests
 
-| Command                             | What it does                                    |
-| ----------------------------------- | ----------------------------------------------- |
-| `bun run test`                      | Run all unit tests via Turbo (cached, parallel) |
-| `bun run test:e2e`                  | Run all E2E tests via Turbo                     |
-| `bun run test:e2e:report`           | Open combined E2E report                        |
-| `bun run test:e2e:report:web`       | Open web E2E report                             |
-| `bun run test:e2e:report:extension` | Open extension E2E report                       |
+| Command                       | What it does                                    |
+| ----------------------------- | ----------------------------------------------- |
+| `bun run test`                | Run all unit tests via Turbo (cached, parallel) |
+| `bun run test:e2e`            | Run all E2E tests via Turbo                     |
+| `bun run test:e2e:report`     | Open combined E2E report                        |
+| `bun run test:e2e:report:web` | Open web E2E report                             |
 
 ### Running Tests Per-App
 
 ```bash
 # Unit tests (watch mode)
 cd apps/web && vitest
-cd apps/browser-extension && vitest
 cd packages/ui && vitest
 
 # Unit tests (single run)
 cd apps/web && vitest run
-cd apps/browser-extension && vitest run
 cd packages/ui && vitest run
 ```
 

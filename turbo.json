@@ -56,12 +56,7 @@
     "e2e": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [
-        "web/playwright-report/**",
-        "web/test-results/**",
-        "browser-extension/playwright-report/**",
-        "browser-extension/test-results/**"
-      ],
+      "outputs": ["web/playwright-report/**", "web/test-results/**"],
       "passThroughEnv": ["PLAYWRIGHT_*", "CI"]
     },
     "dev": {

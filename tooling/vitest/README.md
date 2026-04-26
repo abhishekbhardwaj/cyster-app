@@ -4,16 +4,14 @@ Shared Vitest configuration presets for the monorepo.
 
 ## Presets
 
-| Export               | Environment                 | Plugins                | Use for                                |
-| -------------------- | --------------------------- | ---------------------- | -------------------------------------- |
-| `@repo/vitest/base`  | `node` (default)            | None                   | Plain TS packages with no DOM          |
-| `@repo/vitest/react` | `jsdom`                     | `@vitejs/plugin-react` | Next.js apps, React component packages |
-| `@repo/vitest/wxt`   | `happy-dom` (via WxtVitest) | `WxtVitest()`          | WXT browser extension                  |
+| Export               | Environment      | Plugins                | Use for                                |
+| -------------------- | ---------------- | ---------------------- | -------------------------------------- |
+| `@repo/vitest/base`  | `node` (default) | None                   | Plain TS packages with no DOM          |
+| `@repo/vitest/react` | `jsdom`          | `@vitejs/plugin-react` | Next.js apps, React component packages |
 
-## Why different environments?
+## Why `jsdom` for React?
 
-- **`jsdom`** is used for Next.js / React because it is the most widely supported and documented DOM implementation for testing React components. The Next.js testing docs recommend it.
-- **`happy-dom`** is used for WXT because the `WxtVitest()` plugin from `wxt/testing/vitest-plugin` internally configures `happy-dom`. Using `jsdom` with `WxtVitest()` causes compatibility issues. Do not change this.
+`jsdom` is the most widely supported and documented DOM implementation for testing React components. The Next.js testing docs recommend it.
 
 ## Usage
 
@@ -29,21 +27,6 @@ export default mergeConfig(
   defineConfig({
     test: {
       // app-specific overrides
-    },
-  }),
-)
-```
-
-```ts
-// apps/browser-extension/vitest.config.ts
-import wxtConfig from '@repo/vitest/wxt'
-import { defineConfig, mergeConfig } from 'vitest/config'
-
-export default mergeConfig(
-  wxtConfig,
-  defineConfig({
-    test: {
-      // extension-specific overrides
     },
   }),
 )
@@ -65,14 +48,6 @@ export default mergeConfig(
 - `jsdom` test environment
 - `@testing-library/react` auto-cleanup works via globals
 - `@testing-library/react` and `@testing-library/dom` available for component tests
-
-### `wxt.js` (extends base)
-
-- `WxtVitest()` plugin which:
-  - Polyfills the `browser.*` extension API with an in-memory fake (`@webext-core/fake-browser`)
-  - Applies Vite config and plugins from `wxt.config.ts`
-  - Sets up WXT auto-imports
-  - Configures `happy-dom` as the test environment
 
 ## Adding a new preset
 

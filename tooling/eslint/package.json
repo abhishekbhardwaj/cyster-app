@@ -6,8 +6,7 @@
   "exports": {
     "./base": "./base.ts",
     "./next-js": "./next.ts",
-    "./react-internal": "./react-internal.ts",
-    "./wxt": "./wxt.ts"
+    "./react-internal": "./react-internal.ts"
   },
   "scripts": {
     "lint": "eslint --max-warnings 0",

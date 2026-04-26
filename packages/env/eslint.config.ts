@@ -34,14 +34,6 @@ export default defineConfig(
     },
   },
   {
-    // browser-extension.ts can use import.meta.env directly (Vite handles it)
-    files: ['src/browser-extension.ts'],
-    rules: {
-      'no-restricted-properties': 'off',
-      'no-restricted-imports': 'off',
-    },
-  },
-  {
     // backend.ts passes process.env directly — no build-time inlining concern
     files: ['src/backend.ts'],
     rules: {

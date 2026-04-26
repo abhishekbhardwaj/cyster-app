@@ -13,7 +13,6 @@
     "test:e2e": "turbo run e2e --filter=@repo/e2e",
     "test:e2e:report": "bun run --filter=@repo/e2e e2e:report",
     "test:e2e:report:web": "bun run --filter=@repo/e2e e2e:report:web",
-    "test:e2e:report:extension": "bun run --filter=@repo/e2e e2e:report:extension",
     "turbo:gen": "turbo gen",
     "commit": "cz",
     "database:generate": "turbo run database:generate",
