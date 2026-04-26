@@ -1,0 +1,5 @@
+# Prisma
+prisma/generated
+
+# Docs
+docs/tech-debt.md

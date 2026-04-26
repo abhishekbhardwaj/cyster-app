@@ -1,0 +1,73 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "ui": "tui",
+  "globalEnv": ["NODE_ENV", "CI", "DATABASE_URL"],
+  "globalDependencies": [".env.*"],
+  "tasks": {
+    "setup:env": {
+      "cache": false
+    },
+    "@repo/database#database:generate": {
+      "dependsOn": ["setup:env"],
+      "cache": false
+    },
+    "@repo/database#database:migrate": {
+      "cache": false
+    },
+    "@repo/database#database:migrate:dev": {
+      "cache": false,
+      "interactive": true
+    },
+    "@repo/database#database:push": {
+      "cache": false
+    },
+    "@repo/database#database:studio": {
+      "cache": false
+    },
+    "@repo/database#database:reset": {
+      "cache": false
+    },
+    "@repo/communications#email:create": {
+      "cache": false,
+      "interactive": true
+    },
+    "@repo/communications#email:check": {
+      "cache": false
+    },
+    "@repo/communications#email:preview": {
+      "cache": false,
+      "persistent": true
+    },
+    "build": {
+      "dependsOn": ["^build", "@repo/database#database:generate", "setup:env"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [".next/**", "!.next/cache/**", ".output/**"]
+    },
+    "lint": {
+      "dependsOn": ["^lint", "@repo/database#database:generate"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck", "@repo/database#database:generate"]
+    },
+    "test": {
+      "inputs": ["$TURBO_DEFAULT$", "vitest.config.*", "bunfig.toml"],
+      "outputs": []
+    },
+    "e2e": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [
+        "web/playwright-report/**",
+        "web/test-results/**",
+        "browser-extension/playwright-report/**",
+        "browser-extension/test-results/**"
+      ],
+      "passThroughEnv": ["PLAYWRIGHT_*", "CI"]
+    },
+    "dev": {
+      "dependsOn": ["@repo/database#database:generate", "setup:env"],
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "@repo/env",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "typecheck": "tsc --noEmit"
+  },
+  "exports": {
+    "./web": "./src/web.ts",
+    "./browser-extension": "./src/browser-extension.ts",
+    "./backend": "./src/backend.ts"
+  },
+  "dependencies": {
+    "@t3-oss/env-core": "^0.13.11",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@repo/eslint": "workspace:*",
+    "@repo/typescript": "workspace:*",
+    "vite": "^8.0.10"
+  }
+}

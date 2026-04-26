@@ -1,0 +1,8 @@
+{
+  "extends": "@repo/typescript/bun.json",
+  "compilerOptions": {
+    "types": ["node", "react", "react-dom"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

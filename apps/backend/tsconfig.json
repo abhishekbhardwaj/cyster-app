@@ -1,0 +1,18 @@
+{
+  "extends": "@repo/typescript/bun.json",
+  "compilerOptions": {
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "types": ["bun", "google-libphonenumber", "lodash"],
+    "paths": {
+      "@/*": ["./src/*"],
+      "tests/*": ["./tests/*"]
+    }
+  },
+  "exclude": ["node_modules", "*.config.ts"]
+}

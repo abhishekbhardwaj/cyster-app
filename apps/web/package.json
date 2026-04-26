@@ -1,0 +1,31 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint --max-warnings 0",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "setup:env": "bun ../../packages/env/setup-env.ts .env.web:.env"
+  },
+  "dependencies": {
+    "@repo/env": "workspace:*",
+    "@repo/ui": "workspace:*",
+    "next": "16.2.4",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@repo/eslint": "workspace:*",
+    "@repo/test-utils": "workspace:*",
+    "@repo/typescript": "workspace:*",
+    "@repo/vitest": "workspace:*",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3"
+  }
+}

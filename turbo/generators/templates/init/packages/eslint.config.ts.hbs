@@ -1,0 +1,9 @@
+{{#if react}}
+import { createReactInternalConfig } from '@repo/eslint/react-internal'
+
+export default createReactInternalConfig({ tsconfigRootDir: import.meta.dirname })
+{{else}}
+import { createESLintConfig } from '@repo/eslint/base'
+
+export default createESLintConfig({ tsconfigRootDir: import.meta.dirname })
+{{/if}}

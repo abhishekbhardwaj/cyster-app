@@ -1,0 +1,157 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id String @id @default(cuid())
+
+  name  String?
+  email String  @unique
+  image String?
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  emailVerified Boolean
+  sessions      Session[]
+  accounts      UserAccount[]
+
+  organizations  OrganizationMember[]
+  invitations    OrganizationInvitation[]
+  createdApiKeys ApiKey[]
+
+  @@map("users")
+}
+
+model Session {
+  id String @id @default(cuid())
+
+  token                String
+  ipAddress            String? @map("ip_address")
+  userAgent            String? @map("user_agent")
+  activeOrganizationId String? @map("active_organization_id")
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([token])
+  @@map("sessions")
+}
+
+model UserAccount {
+  id String @id @default(cuid())
+
+  accountId             String    @map("account_id")
+  providerId            String    @map("provider_id")
+  accessToken           String?   @map("access_token")
+  refreshToken          String?   @map("refresh_token")
+  idToken               String?   @map("id_token")
+  accessTokenExpiresAt  DateTime? @map("access_token_expires_at")
+  refreshTokenExpiresAt DateTime? @map("refresh_token_expires_at")
+  scope                 String?
+  password              String?
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("user_accounts")
+}
+
+model UserVerification {
+  id String @id @default(cuid())
+
+  identifier String
+  value      String
+
+  expiresAt DateTime  @map("expires_at")
+  createdAt DateTime? @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  @@map("user_verifications")
+}
+
+model Organization {
+  id String @id @default(cuid())
+
+  name     String
+  slug     String
+  logo     String?
+  metadata String?
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  members     OrganizationMember[]
+  invitations OrganizationInvitation[]
+  apiKeys     ApiKey[]
+
+  @@unique([slug])
+  @@map("organizations")
+}
+
+model OrganizationMember {
+  id String @id @default(cuid())
+
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  role String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([organizationId, userId])
+  @@map("organization_members")
+}
+
+model OrganizationInvitation {
+  id String @id @default(cuid())
+
+  email  String
+  role   String?
+  status String
+
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  inviterId String @map("inviter_id")
+  user      User   @relation(fields: [inviterId], references: [id], onDelete: Cascade)
+
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("organization_invitations")
+}
+
+model ApiKey {
+  id String @id @default(cuid())
+
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  createdByUserId String @map("created_by_user_id")
+  createdByUser   User   @relation(fields: [createdByUserId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  key String @unique
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("api_keys")
+}

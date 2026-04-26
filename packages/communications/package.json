@@ -1,0 +1,30 @@
+{
+  "name": "@repo/communications",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "email:create": "email create --out=./src/email/templates",
+    "email:check": "email check ./src/email/templates",
+    "email:preview": "email preview ./src/email/templates --no-open --port 2999",
+    "lint": "eslint . --max-warnings 0",
+    "typecheck": "tsc --noEmit"
+  },
+  "exports": {
+    "./email": "./src/email/index.ts"
+  },
+  "dependencies": {
+    "@repo/env": "workspace:*",
+    "jsx-email": "^2.8.4",
+    "nodemailer": "^8.0.6",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@repo/eslint": "workspace:*",
+    "@repo/typescript": "workspace:*",
+    "@types/nodemailer": "^8.0.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3"
+  }
+}
