@@ -30,18 +30,18 @@
     "@repo/database": "workspace:*",
     "@repo/env": "workspace:*",
     "@hono/zod-validator": "^0.7.6",
-    "@logtape/hono": "^2.0.5",
-    "@logtape/logtape": "^2.0.5",
+    "@logtape/hono": "^2.0.6",
+    "@logtape/logtape": "^2.0.6",
     "@paralleldrive/cuid2": "^3.3.0",
     "@prisma/instrumentation": "^7.8.0",
-    "@scalar/hono-api-reference": "^0.10.10",
+    "@scalar/hono-api-reference": "^0.10.13",
     "better-auth": "^1.6.9",
     "commander": "^14.0.3",
     "google-libphonenumber": "^3.2.44",
-    "hono": "^4.12.15",
+    "hono": "^4.12.16",
     "lodash": "^4.18.1",
-    "nanoid": "^5.1.9",
+    "nanoid": "^5.1.11",
     "stoker": "^2.0.1",
-    "zod": "^4.3.6"
+    "zod": "^4.4.2"
   }
 }

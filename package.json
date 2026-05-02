@@ -29,15 +29,15 @@
     "prepare": "is-ci || husky"
   },
   "devDependencies": {
-    "@commitlint/cli": "^20.5.2",
-    "@commitlint/config-conventional": "^20.5.0",
-    "@turbo/gen": "^2.9.6",
+    "@commitlint/cli": "^20.5.3",
+    "@commitlint/config-conventional": "^20.5.3",
+    "@turbo/gen": "^2.9.7",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
     "devmoji": "^2.3.0",
     "husky": "^9.1.7",
     "prettier": "^3.8.3",
-    "turbo": "^2.9.6",
+    "turbo": "^2.9.7",
     "typescript": "6.0.3",
     "vitest": "^4.1.5"
   },

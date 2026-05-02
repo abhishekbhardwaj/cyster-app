@@ -16,7 +16,7 @@
   "dependencies": {
     "@repo/env": "workspace:*",
     "jsx-email": "^2.8.4",
-    "nodemailer": "^8.0.6",
+    "nodemailer": "^8.0.7",
     "react": "^19.2.5",
     "react-dom": "^19.2.5"
   },
